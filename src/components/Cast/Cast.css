@@ -1,0 +1,78 @@
+.cast__wrapper {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+   
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+
+    padding: 1.5rem;
+    
+}
+
+.cast__container {
+    grid-area: 1 / 1 / 2 / 4;    
+}
+
+.cast__list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+   
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+}
+
+.cast__list__item {
+    flex-shrink: 1;
+
+    display: flex;
+    flex-direction: row;
+    padding: 1rem;
+}
+
+.cast__list__item__avatar {
+    margin-right: 1.5rem;
+}
+
+.cast__list__item__avatar__img {
+    border-radius: 50%;
+    width: 130px;
+    height: 130px;
+    object-fit: cover;
+    object-position: center;
+}
+
+.cast__list__item__details{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.cast__list__item__details p{
+    margin: 0px;
+}
+
+.cast__list__item__details__name {
+    font-weight: bold;
+}
+
+.cast__list__item__details__character {  
+    color: rgba(0,0,0, .54);
+}
+
+.cast__tittle__text::before {
+    background: #f5c518;
+    
+    content: '';
+    margin-left: -0.7rem;
+    align-self: flex-start;
+    position: absolute;
+    height: 100%;
+    width: 4px;
+}
+
+.cast__tittle__text {
+    margin-left: 0.7rem;
+}
+.cast__tittle {
+    position: relative;
+}

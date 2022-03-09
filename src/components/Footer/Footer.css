@@ -1,0 +1,29 @@
+.Footer__Wrapper {
+    min-height: 200px;
+    background-color: black;
+}
+
+.Footer__Container {
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+}
+
+.Footer__linkedIn {
+    text-decoration: none;
+}
+
+.Footer__icon{
+    color: white;
+}
+
+.Footer__text {
+    margin-right: 0.5rem;
+}
+
+.Footer__text span{
+    font-size: small;
+    
+}
