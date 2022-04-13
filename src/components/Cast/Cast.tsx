@@ -16,7 +16,7 @@ const Cast = (props: MovieId) => {
     }
 
     const [cast, setCast] = useState<Array<Cast>>();
-    const [fetchError, setfetchError] = useState<any>(null);
+    const [fetchError, setfetchError] = useState<Error | null>(null);
 
     
     useEffect(() => {
@@ -33,8 +33,6 @@ const Cast = (props: MovieId) => {
                 setfetchError(null);
             } catch (error: any) {
                 setfetchError(error.message);
-
-                console.log(error);
             }
         
         

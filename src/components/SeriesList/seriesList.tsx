@@ -34,7 +34,9 @@ function SeriesList() {
   const pickedData: Series[] = [];
   const [data, setData] = useState<Array<Series>>();
   const [fetchError, setfetchError] = useState<string | null>(null);
-  const [randomButtonClicked,setRandomButtonClicked] = useState(false)
+  const [randomButtonClicked,setRandomButtonClicked] = useState(false);
+  const [loading, setLoading] = useState(false);
+
 
   function getRandomArbitrary(min: number, max: number) {
     return Math.floor(Math.random() * (max - min) + min);
@@ -65,43 +67,39 @@ function SeriesList() {
             setData(seriesData);
             setfetchError(null);
 
-            
-
         } catch (error: any) {            
             setfetchError(error.message);
-            console.log(fetchError);
-            console.log(typeof fetchError);
-        }
-    
-    
+           
+        }      
     };
 
     fetchSeries();  
-
+    
   }, []);
 
 
   useEffect(() => {
     pickRandomMovies();
+    
   }, [randomButtonClicked]);
 
 
-  function pickRandomMovies() {
+  function pickRandomMovies() {  
     for (let i = 0; i < 5; i++) {
       if (data) {
         pickedData[i] = data[getRandomArbitrary(0, data.length)];
       }
-    }
+    }        
   }
 
-  pickRandomMovies();
 
-  console.log(data);
-  console.log(pickedData);
+
+  pickRandomMovies();
+  
 
   if (pickedData !== undefined) {
       return (
-          <div className={styles.randomListWrapper}>
+          <div className={styles.randomListWrapper} id="seriesList">
               <div className={styles.randomListTittle}>
                 <h2 className={styles.randomListTittle__text}>Random Series</h2>
               </div>

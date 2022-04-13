@@ -33,9 +33,7 @@ const EpisodesList = (props: MovieId) => {
     
 
     useEffect(() => {
-
         const fetchSeries = async () => {
-
             try {
                 const response = await fetch(`https://api.tvmaze.com/shows/${props.movieId}/episodes`,{    
                     method: 'GET',    
@@ -45,17 +43,9 @@ const EpisodesList = (props: MovieId) => {
                 setEpisodes(episodesData);
                 setfetchError(null);
 
-                
-
-            } catch (error: any) {
-                
+            } catch (error: any) {               
                 setfetchError(error.message);
-
-                console.log(fetchError);
-                console.log(typeof fetchError);
             }
-        
-        
         };
 
         fetchSeries();          
@@ -64,10 +54,9 @@ const EpisodesList = (props: MovieId) => {
 
     }, [props.movieId]);
 
-    //scrolling to top when change season
+    //scrollToTop
     useEffect(() => {
         scrollToTop(cardList);
-
     }, [season]);
 
 
@@ -86,8 +75,7 @@ const EpisodesList = (props: MovieId) => {
         }            
         });     
     }
-  
-        
+         
 
     if (fetchError !== null) {
         return (
@@ -99,7 +87,7 @@ const EpisodesList = (props: MovieId) => {
         return (
             <div className='episodes__modalContainer'>
                 {openModal && <EpisodeModal sum={episodeSummary} closeModal={setOpenModal} episodeName={episodeNumber}/>}   
-            <div className='episodes__wrapper'>     
+            <div className='episodes__wrapper' id='episodeList'>     
                    
                 <div className='episodes__container'>
                     <div className='episodes__tittle'>
@@ -203,11 +191,3 @@ const EpisodesList = (props: MovieId) => {
 }   
 
 export default EpisodesList;
-
-/*
-
-{episodes && episodes.filter((episode: any)  => (episode.season === selectedSeason)).map((filteredEpisode: any, index: number) => (
-    <div key={index}>{filteredEpisode}</div>
-))}
-
-*/

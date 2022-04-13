@@ -28,7 +28,6 @@ const SeriesDetails = (props: MovieId) => {
       } catch (error: any) {
         setfetchError(error.message);
 
-        console.log(error);
       }
     };
 
@@ -49,37 +48,48 @@ const SeriesDetails = (props: MovieId) => {
               </div>
             </div>
             <div className="showDetails__head__rateAndLinks">
-              <div className="showDetails__head__rateAndLinks__container">
-                <div className="showDetails__head__rateAndLinks__container__link">
-                  <a
-                    href={`https://www.imdb.com/title/${series.externals.imdb}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
+              <a
+                href={`https://www.imdb.com/title/${series.externals.imdb}`}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <div className="showDetails__head__rateAndLinks__container">
+                  <div className="showDetails__head__rateAndLinks__container__link">
                     IMDb
-                  </a>
+                  </div>
+                  <div className="showDetails__head__rateAndLinks__container__rates">
+                    <svg
+                      className="showDetails__head__rateAndLinks__star"
+                      width="48"
+                      height="48"
+                      fill="currentColor"
+                      viewBox="0 0 24 24"
+                      role="presentation"
+                    >
+                      <path d="M12 17.27l4.15 2.51c.76.46 1.69-.22 1.49-1.08l-1.1-4.72 3.67-3.18c.67-.58.31-1.68-.57-1.75l-4.83-.41-1.89-4.46c-.34-.81-1.5-.81-1.84 0L9.19 8.63l-4.83.41c-.88.07-1.24 1.17-.57 1.75l3.67 3.18-1.1 4.72c-.2.86.73 1.54 1.49 1.08l4.15-2.5z"></path>
+                    </svg>
+                    <span>
+                      {series.rating.average ? series.rating.average : "NA"}
+                    </span>
+                    <span className="showDetails__head__rateAndLinks__container__rates__rateSecondaryText">
+                      /10
+                    </span>
+                  </div>
                 </div>
-                <div className="showDetails__head__rateAndLinks__container__rates">
-                  <svg
-                    className="showDetails__head__rateAndLinks__star"
-                    width="48"
-                    height="48"
-                    fill="currentColor"
-                    viewBox="0 0 24 24"
-                    role="presentation"
-                  >
-                    <path d="M12 17.27l4.15 2.51c.76.46 1.69-.22 1.49-1.08l-1.1-4.72 3.67-3.18c.67-.58.31-1.68-.57-1.75l-4.83-.41-1.89-4.46c-.34-.81-1.5-.81-1.84 0L9.19 8.63l-4.83.41c-.88.07-1.24 1.17-.57 1.75l3.67 3.18-1.1 4.72c-.2.86.73 1.54 1.49 1.08l4.15-2.5z"></path>
-                  </svg>
-                  <span>
-                    {series.rating.average
-                      ? series.rating.average  
-                      : "NA"}
-                  </span>
-                  <span className="showDetails__head__rateAndLinks__container__rates__rateSecondaryText">
-                    /10
-                  </span>
-                </div>
-              </div>
+              </a>
+ <a
+                  href={`https://thetvdb.com/search?query=${series.externals.thetvdb}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+              <div className="showDetails__head__rateAndLinks__container">
+               
+                  <div className="showDetails__head__rateAndLinks__container__link">
+                    <span className="tvbdLinkColor">tv</span>db
+                  </div>
+                
+            </div>
+            </a>
             </div>
           </div>
           <div className="showDetails__details">
@@ -105,7 +115,7 @@ const SeriesDetails = (props: MovieId) => {
               </div>
               <div className="showDetails__detailsList showDetails__headings --bottomBorder">
                 <h4>Channel: </h4>
-                {console.log(series)}
+              
                 <p>{series.network !== null ? series.network.name : ""}</p>
               </div>
               <div className="showDetails__detailsList showDetails__headings --bottomBorder">
@@ -121,7 +131,11 @@ const SeriesDetails = (props: MovieId) => {
                   series.officialSite ? "--bottomBorder" : ""
                 }`}
               >
-                <p>{ series.summary === null ? 'No description' : series.summary.replace(/(<([^>]+)>)/gi, "")}</p>
+                <p>
+                  {series.summary === null || series.summary === ""
+                    ? "No description"
+                    : series.summary.replace(/(<([^>]+)>)/gi, "")}
+                </p>
               </div>
 
               {series.officialSite ? (
@@ -141,11 +155,13 @@ const SeriesDetails = (props: MovieId) => {
               <div className="showDetails__details__buttonContainer__addButton showDetailsBtn">
                 ADD
               </div>
-              <div className="showDetails__details__buttonContainer__episodeButton showDetailsBtn">
+              <a
+                href="#episodeList"
+                className="showDetails__details__buttonContainer__episodeButton showDetailsBtn"
+              >
                 EPISODES
-              </div>
-            </div>      
-
+              </a>
+            </div>
           </div>
         </div>
       </div>
